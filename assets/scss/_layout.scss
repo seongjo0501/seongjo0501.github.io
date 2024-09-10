@@ -1,0 +1,283 @@
+// 헤더, 푸터, 팝업 등 공통
+#header {
+    padding: 1rem;
+
+    .header-wrap {
+        position: relative;
+        height: 24rem;
+        background: no-repeat url(#{$img-layout-path}bg_header.jpg) center center / cover;
+        border-radius: $border-radius-xlarge;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 0 0;
+            background: rgb(24 24 27 / 87%);
+            mix-blend-mode: multiply;
+            filter: contrast(1.15) brightness(0.85);
+        }
+
+        .inner {
+            position: relative;
+            max-width: 1320px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 1rem 0;
+
+            h1 {
+                position: absolute;
+                top: 10px;
+                left: 0;
+                width: 60px;
+                height: 60px;
+                z-index: 1;
+
+                a {
+                    width: 100%;
+                    height: 100%;
+                    background: no-repeat url(#{$img-layout-path}logo_white.svg) center;
+
+                    font-size: 0;
+                    line-height: 0;
+                    overflow: hidden;
+                }
+            }
+
+            #gnb {
+                position: absolute;
+                top: 15px;
+                left: 0;
+                width: 100%;
+                @include font-Noto-Medium;
+                color: $white;
+
+                @include deskS {
+                    position: fixed;
+                    top: 0;
+                    left: auto;
+                    right: -60vw;
+                    width: 60vw;
+                    height: 100%;
+                    padding-left: 1rem;
+
+                    @include flex-top;
+
+                    background: $white;
+                    color: #000;
+                    
+                    &.on {
+                        right: 0;
+                        transition: 0.5s;
+                    }
+
+                    @include tablet {
+                        right: -70vw;
+                        width: 70vw;
+                    }
+                }
+
+                > .depth1 {
+                    @include flex-center;
+                    gap: 0 30px;
+
+                    @include deskS {
+                        flex-wrap: wrap;
+                        gap: 0;
+                        width: calc(100% - 3rem - 40px); // 패널 width, right 만큼 여백
+                        margin-top: calc(2rem + 40px); // 패널 height, top 만큼 여백
+                    }
+
+                    > li {
+                        position: relative;
+                        padding-bottom: 10px;
+
+                        @include deskS {
+                            width: 100%;
+                            padding-top: 10px;
+                            border-bottom: 1px solid $black;
+                        }
+
+                        > a {
+                            padding: 7px 10px;
+                            border-radius: $border-radius-small;
+                            transition: 0.4s;
+
+                            font-size: 1.25rem;
+
+                            &:hover {
+                                background-color: $orange;
+                            }
+
+                            @include deskS {
+                                position: relative;
+                                width: 100%;
+                                padding: 7px 1.25rem;
+
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 5px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+
+                                    width: 5px;
+                                    height: 5px;
+                                    border-radius: $border-radius-circle;
+                                    background-color: $orange;
+                                }
+
+                                &:hover {
+                                    background-color: $white;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .depth2 {
+                    position: absolute;
+                    left: 50%;
+                    top: 100%;
+                    width: calc(100% + 20px);
+                    max-height: 0;
+                    overflow: hidden;
+                    transform: translateX(-50%);
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    background-color: $white;
+                    border-radius: $border-radius-medium;
+                    transition: 0.3s;
+
+                    @include deskS { 
+                        position: static;
+                        transform: none;
+                        border-radius: $border-radius-none;
+                    }
+
+                    > li {
+                        width: 100%;
+
+                        &:first-child {
+                            margin-top: 0.75rem;
+                        }
+                        &:last-child {
+                            margin-bottom: 0.75rem;
+                        }
+
+                        > a {
+                            width: 100%;
+                            padding: 10px 15px;
+                            font-size: 0.875rem;
+                            color: $black;
+
+                            @include deskS {  }
+
+                            &:hover {
+                                background-color: $orange;
+                                color: $white;
+
+                                @include deskS {  
+                                    &:hover {
+                                        background-color: $white;
+                                        color: $black;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #panel {
+                display: none;
+
+                &:checked {
+                    + .panel-toggle {
+                        transition-duration: 0.5s;
+                        transform: rotate(180deg);
+
+                        .bars {
+                            position: absolute;
+                            transition-duration: 0.5s;
+                            background: $black;
+
+                            &#bar2 {
+                                transform: scaleX(0);
+                                transition-duration: 0.5s;
+                            }
+
+                            &#bar1 {
+                                width: 100%;
+                                transform: rotate(45deg);
+                                transition-duration: 0.5s;
+                            }
+
+                            &#bar3 {
+                                width: 100%;
+                                transform: rotate(-45deg);
+                                transition-duration: 0.5s;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .panel-toggle {
+                display: none;
+
+                @include deskS {
+                    position: absolute;
+                    top: 10px;
+                    right: 1rem;
+                    width: 40px;
+                    height: 40px;
+            
+                    @include flex-center;
+                    flex-direction: column;
+                    gap: 10px;
+                    z-index: 10;
+
+                    cursor: pointer;
+                    transition-duration: 0.5s;
+
+                    .bars {
+                        width: 100%;
+                        height: 3px;
+                        background-color: $white;
+                        border-radius: 4px;
+
+                        &#bar2 {
+                            transition-duration: 0.8s;
+                        }
+
+                        &#bar1,
+                        &#bar3 {
+                            width: 70%;
+                        }
+                    }
+                }
+            }
+
+            .sub-title {
+                @include flex-center;
+                @include font-Gmarket-medium;
+
+                height: 100%;
+                color: $white;
+
+                p {
+                    font-size: 3rem;
+                    text-align: center;
+
+                    span {
+                        display: block;
+                        padding-top: 10px;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

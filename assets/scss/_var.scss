@@ -1,0 +1,97 @@
+// color
+$red: #f00;
+$green: #0f0;
+$blue: #00f;
+$orange: #ea580c;
+$yellow: #ff0;
+$pink: #f0f;
+$white: #fff;
+$black: #1a1a1a;
+
+// img path
+$img-layout-path: '../images/layout/';
+$img-main-path: '../images/main/';
+$img-sub-path: '../images/sub/';
+
+// border radius
+$border-radius-xlarge: 2rem;
+$border-radius-large: 1.5rem;
+$border-radius-medium: 1rem;
+$border-radius-small: 0.5rem;
+$border-radius-none: 0rem;
+$border-radius-circle: 50%;
+
+// font family - GmarketSans
+@mixin font-Gmarket-bold {
+    font-family: 'GmarketSans',sans-serif;
+    font-weight: 700;
+}
+@mixin font-Gmarket-medium {
+    font-family: 'GmarketSans',sans-serif;
+    font-weight: 500;
+}
+@mixin font-Gmarket-thin {
+    font-family: 'GmarketSans',sans-serif;
+    font-weight: 300;
+}
+
+// font family - Noto Sans KR
+@mixin font-Noto-bold {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-weight: 700;
+}
+@mixin font-Noto-Medium {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-weight: 500;
+}
+@mixin font-Noto-Regular {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-weight: 400;
+}
+@mixin font-Noto-thin {
+    font-family: 'Noto Sans KR',sans-serif;
+    font-weight: 300;
+}
+
+
+// 반응형 설정
+$brakpoint-desktop-small: 1280px;
+$brakpoint-tablet: 1024px;
+$brakpoint-mobile: 768px;
+$brakpoint-mobile-small: 560px;
+
+@mixin deskS {
+    @media only screen and (max-width: #{$brakpoint-desktop-small}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: #{$brakpoint-tablet}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and (max-width: #{$brakpoint-mobile}) {
+        @content;
+    }
+}
+
+@mixin mobileS {
+    @media only screen and (max-width: #{$brakpoint-mobile-small}) {
+        @content;
+    }
+}
+
+// flex
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-top {
+    display: flex;
+    align-items: flex-start;
+}

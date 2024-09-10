@@ -1,0 +1,22 @@
+{
+    "about/index.html": {
+        "title": "자기소개 페이지입니다.",
+        "description": "제 소개를 한 번만 읽어주세요!"
+    },
+    "blog/index.html": {
+        "title": "깃허브 페이지입니다.",
+        "description": "제 깃허브를 소개 시켜드리겠습니다!"
+    },
+    "main/index.html": {
+        "title": "저의 경력기술 페이지입니다.",
+        "description": "안녕하세요. 저의 경력 기술 페이지에 오신걸 환영합니다!"
+    },
+    "work/index.html": {
+        "title": "연혁 페이지입니다.",
+        "description": "제가 지금까지 일해왔던 목록들을 보여드릴게요!"
+    },
+    "work/portfolio.html": {
+        "title": "포트폴리오 페이지입니다.",
+        "description": "제 포트폴리오를 소개합니다!"
+    }
+}
