@@ -53,7 +53,7 @@ const headerEvents = {
                 }
             }
 
-            subTitle.innerHTML = "<p>타이틀 로딩 중...<span>설명 로딩 중...</span></p>";
+            subTitle.innerHTML = "<p>기본 텍스트 입니다. json 설정 해주세요 <span>기본 텍스트 입니다. json 설정 해주세요</span></p>";
         } catch (error) {
             console.error("JSON 파일을 불러오는 데 실패했습니다:", error);
         }
