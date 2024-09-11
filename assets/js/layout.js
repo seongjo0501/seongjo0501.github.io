@@ -77,7 +77,7 @@ const headerEvents = {
     },
 
     gnbMo: () => {
-        // GNB PC이벤트 - click
+        // GNB Mobile이벤트 - click
         const panel = document.querySelector("#panel");
         const gnb = document.querySelector("#gnb");
         const gnbBtns = gnb.querySelectorAll(".depth1 > li > a");
