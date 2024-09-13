@@ -7,6 +7,8 @@ $yellow: #ff0;
 $pink: #f0f;
 $white: #fff;
 $black: #1a1a1a;
+$black2: #666;
+$gray: #ededed;
 
 // img path
 $img-layout-path: '../images/layout/';
@@ -94,4 +96,9 @@ $brakpoint-mobile-small: 560px;
 @mixin flex-top {
     display: flex;
     align-items: flex-start;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
 }

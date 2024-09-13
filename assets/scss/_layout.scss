@@ -301,3 +301,87 @@
         }
     }
 }
+
+#footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    border-top: 1px solid $gray;
+
+    .footer-wrap {
+        @include flex-between;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+        line-height: 1.5;
+
+        @include deskS {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        ul {
+            @include flex-top;
+            gap: 13px;
+
+            @include deskS {
+                width: 100%;
+            }
+
+            @include tablet {
+                flex-wrap: wrap;
+                gap: 0 10px;
+            }
+            @include mobile {
+                gap: 3;
+            }
+
+            li {
+                font-size: 0.9rem;
+                color: $black2;
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                span {
+                    position: relative;
+                    padding: 0 10px 0 8px;
+                    font-weight: 500;
+                    color: $black;
+
+                    &::before {
+                        content: ':';
+                        position: absolute;
+                        top: 50%;
+                        right: 5px;
+                        transform: translateY(-50%);
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 3px;
+                        height: 3px;
+                        border-radius: $border-radius-circle;
+                        background-color: $orange;
+                    }
+                }
+            }
+        }
+
+        p {
+            font-size: 0.9rem;
+
+            @include deskS {
+                width: 100%;
+            }
+
+        }
+    }
+}
