@@ -194,10 +194,6 @@ body {
     line-height: 1.3;
     color: #1a1a1a;
 
-    &.on {
-        overflow: hidden;
-    }
-
     @include tablet {
         font-size: 14px;
     }

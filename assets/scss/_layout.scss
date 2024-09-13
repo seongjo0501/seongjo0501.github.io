@@ -4,13 +4,31 @@
 // 헤더, 푸터, 팝업 등 공통
 #header {
     padding: 1rem;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
 
     .header-wrap {
         position: relative;
         height: 24rem;
         background: no-repeat url(#{$img-layout-path}bg_header.jpg) center center / cover;
         border-radius: $border-radius-xlarge;
-        overflow: hidden;
+        transition: 0.4s;
+
+        &.on {
+            height: calc(5rem - 10px);
+
+            .sub-title {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 0;
+                z-index: -1;
+                transition: opacity 0.4s;
+            }
+        }
 
         @include deskS {
             height: 22rem;
@@ -31,6 +49,7 @@
             background: rgb(24 24 27 / 87%);
             mix-blend-mode: multiply;
             filter: contrast(1.15) brightness(0.85);
+            border-radius: 2rem;
         }
 
         .inner {
@@ -42,9 +61,13 @@
 
             h1 {
                 position: absolute;
-                top: 1rem;
+                top: 1.4rem;
                 left: 10px;
-                z-index: 1;
+                z-index: 2;
+
+                @include tablet {
+                    top: 1rem;
+                }
 
                 a {
                     width: 100%;
@@ -59,6 +82,7 @@
                 width: 100%;
                 @include font-Noto-Medium;
                 color: $white;
+                z-index: 1;
 
                 @include deskS {
                     position: fixed;
@@ -238,7 +262,7 @@
 
                 @include deskS {
                     position: absolute;
-                    top: 10px;
+                    top: 1.2rem;
                     right: 1rem;
                     width: 30px;
                     height: 30px;
@@ -266,6 +290,10 @@
                             width: 80%;
                         }
                     }
+                }
+
+                @include tablet {
+                    top: 1rem;
                 }
             }
 

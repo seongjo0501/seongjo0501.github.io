@@ -58,6 +58,20 @@ const headerEvents = {
             console.error("JSON 파일을 불러오는 데 실패했습니다:", error);
         }
     },
+    headerScroll: () => {
+        const headerWrap = document.querySelector("#header .header-wrap");
+        let scrollTop = window.scrollY;
+
+        window.addEventListener("scroll", () => {
+            scrollTop = window.scrollY;
+
+            if (scrollTop > 0) {
+                headerWrap.classList.add("on");
+            } else {
+                headerWrap.classList.remove("on");
+            }
+        });
+    },
     gnbPc: () => {
         // GNB PC이벤트 - mouseenter/mouseleave
         const gnbBtns = gnb.querySelectorAll(".depth1 > li");
