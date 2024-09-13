@@ -104,6 +104,17 @@ const headerEvents = {
 
         gnbBtns.forEach((btn) => btn.addEventListener("click", (e) => click(e)));
     },
+    footerBtn: () => {
+        const footer = document.querySelector("#footer");
+        const btn = document.querySelector(".footBtn");
+        let onOff = false;
+
+        btn.addEventListener("click", () => {
+            onOff = !onOff;
+
+            footer.classList.toggle("on", onOff);
+        });
+    },
 };
 
 layoutInclude(headerEvents);

@@ -1,5 +1,5 @@
 // 로고 폰트
-@import url('https://fonts.cdnfonts.com/css/rage-italic');
+@import url("https://fonts.cdnfonts.com/css/rage-italic");
 
 // 헤더, 푸터, 팝업 등 공통
 #header {
@@ -73,7 +73,7 @@
 
                     background: $white;
                     color: #000;
-                    
+
                     &.on {
                         right: 0;
                         transition: 0.5s;
@@ -123,7 +123,7 @@
                                 padding: 7px 1.25rem;
 
                                 &::before {
-                                    content: '';
+                                    content: "";
                                     position: absolute;
                                     left: 5px;
                                     top: 50%;
@@ -158,7 +158,7 @@
                     border-radius: $border-radius-medium;
                     transition: 0.3s;
 
-                    @include deskS { 
+                    @include deskS {
                         position: static;
                         transform: none;
                         border-radius: $border-radius-none;
@@ -180,13 +180,14 @@
                             font-size: 0.875rem;
                             color: $black;
 
-                            @include deskS {  }
+                            @include deskS {
+                            }
 
                             &:hover {
                                 background-color: $orange;
                                 color: $white;
 
-                                @include deskS {  
+                                @include deskS {
                                     &:hover {
                                         background-color: $white;
                                         color: $black;
@@ -241,7 +242,7 @@
                     right: 1rem;
                     width: 30px;
                     height: 30px;
-            
+
                     @include flex-center;
                     flex-direction: column;
                     gap: 7px;
@@ -303,23 +304,79 @@
 }
 
 #footer {
-    position: absolute;
+    position: fixed;
     left: 0;
-    right: 0;
     bottom: 0;
+    width: 100%;
+    transition: 0.4s;
 
-    border-top: 1px solid $gray;
+    @include mobile {
+        left: -100%;
 
-    .footer-wrap {
+        &.on {
+            left: 0;
+
+            &::before {
+                height: 1px;
+            }
+
+            .footBtn {
+                left: calc(100% - 30px - 1rem);
+                bottom: 5.5rem;
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    &::before {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: var(--before-height);
+        height: 1px;
+        background-color: $gray;
+
+        @include mobile {
+            height: 0;
+        }
+    }
+
+    .footBtn {
+        display: none;
+
+        @include mobile {
+            @include flex-center;
+            flex-wrap: wrap;
+            align-content: center;
+            position: fixed;
+            left: 1rem;
+            bottom: 2rem;
+            width: 30px;
+            height: 30px;
+            border-radius: $border-radius-circle;
+            background-color: $black;
+            transition: 0.4s;
+            z-index: 1;
+            color: $white;
+        }
+    }
+
+    .info {
         @include flex-between;
         max-width: 1320px;
         margin: 0 auto;
         padding: 0.5rem 1rem;
         line-height: 1.5;
+        transition: 0.4s;
 
         @include deskS {
             flex-wrap: wrap;
             gap: 10px;
+        }
+
+        @include mobile {
+            // transform: translateX(-100%);
         }
 
         ul {
@@ -353,7 +410,7 @@
                     color: $black;
 
                     &::before {
-                        content: ':';
+                        content: ":";
                         position: absolute;
                         top: 50%;
                         right: 5px;
@@ -361,7 +418,7 @@
                     }
 
                     &::after {
-                        content: '';
+                        content: "";
                         position: absolute;
                         left: 0;
                         top: 50%;
@@ -381,7 +438,6 @@
             @include deskS {
                 width: 100%;
             }
-
         }
     }
 }
