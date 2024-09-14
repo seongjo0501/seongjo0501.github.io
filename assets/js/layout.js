@@ -24,7 +24,7 @@ const layoutInclude = async (callbacks = {}) => {
         }
     }
 
-    // 전달된 headerEvents를 실행
+    // 전달된 layoutEvents를 실행
     for (const key in callbacks) {
         if (callbacks.hasOwnProperty(key) && typeof callbacks[key] === "function") {
             callbacks[key]();
@@ -32,43 +32,18 @@ const layoutInclude = async (callbacks = {}) => {
     }
 };
 
-// header 이벤트 작성
-const headerEvents = {
-    subTitle: async () => {
-        // sub-title을 sub_title.json에서 비동기로 가져온다.
-        // header를 공통으로 빼서 비동기로 가져온다.
-        const subTitle = document.querySelector(".sub-title");
-        const currentPath = window.location.pathname;
-
-        try {
-            const response = await fetch("../../assets/js/sub_title.json");
-            const data = await response.json();
-
-            for (const path in data) {
-                if (currentPath.includes(path)) {
-                    const pageInfo = data[path];
-
-                    subTitle.innerHTML = `<p>${pageInfo.title}<span>${pageInfo.description}</span></p>`;
-                    return;
-                }
-            }
-
-            subTitle.innerHTML = "<p>기본 텍스트 입니다. json 설정 해주세요 <span>기본 텍스트 입니다. json 설정 해주세요</span></p>";
-        } catch (error) {
-            console.error("JSON 파일을 불러오는 데 실패했습니다:", error);
-        }
-    },
+const layoutEvents = {
     headerScroll: () => {
-        const headerWrap = document.querySelector("#header .header-wrap");
+        const header = document.querySelector("#header ");
         let scrollTop = window.scrollY;
 
         window.addEventListener("scroll", () => {
             scrollTop = window.scrollY;
 
             if (scrollTop > 0) {
-                headerWrap.classList.add("on");
+                header.classList.add("on");
             } else {
-                headerWrap.classList.remove("on");
+                header.classList.remove("on");
             }
         });
     },
@@ -129,6 +104,30 @@ const headerEvents = {
             footer.classList.toggle("on", onOff);
         });
     },
+    subTitle: async () => {
+        // sub-title을 sub_title.json에서 비동기로 가져온다.
+        // header를 공통으로 빼서 비동기로 가져온다.
+        const subTitle = document.querySelector(".sub-title");
+        const currentPath = window.location.pathname;
+
+        try {
+            const response = await fetch("../../assets/js/sub_title.json");
+            const data = await response.json();
+
+            for (const path in data) {
+                if (currentPath.includes(path)) {
+                    const pageInfo = data[path];
+
+                    subTitle.innerHTML = `<p>${pageInfo.title}<span>${pageInfo.description}</span></p>`;
+                    return;
+                }
+            }
+
+            subTitle.innerHTML = "<p>기본 텍스트 입니다. json 설정 해주세요 <span>기본 텍스트 입니다. json 설정 해주세요</span></p>";
+        } catch (error) {
+            console.error("JSON 파일을 불러오는 데 실패했습니다:", error);
+        }
+    },
 };
 
-layoutInclude(headerEvents);
+layoutInclude(layoutEvents);
