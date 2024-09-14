@@ -40,7 +40,7 @@ const layoutEvents = {
         window.addEventListener("scroll", () => {
             scrollTop = window.scrollY;
 
-            if (scrollTop > 10) {
+            if (scrollTop > 0) {
                 header.classList.add("on");
             } else {
                 header.classList.remove("on");

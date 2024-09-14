@@ -7,20 +7,13 @@
 #main {
     max-width: 1320px;
     margin: 0 auto;
+    padding-top: 4rem;
     height: 200vh;
-    
-    margin-top: 26rem;
     transition: 0.4s;
 
-    @include deskS {
-        margin-top: 24rem;
-    }
-
-    @include tablet {
-        margin-top: 22rem;
-    }
-
-    @include mobile {
-        margin-top: 20rem;
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        text-align: center;
     }
 }

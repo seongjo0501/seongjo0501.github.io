@@ -3,13 +3,16 @@
 
 // 헤더, 푸터, 팝업 등 공통
 #header {
-    padding: 1rem;
-    position: fixed;
+    padding: 0 1rem;
+    position: sticky;
     left: 0;
     right: 0;
-    top: 0;
+    top: 10px;
+    z-index: 10;
 
     &.on {
+        height: calc(5rem - 10px);
+
         .header-wrap {
             height: calc(5rem - 10px);
         }
@@ -28,11 +31,7 @@
         }
 
         + #main {
-            margin-top: 12.5rem;
-
-            @include tablet {
-                margin-top: 13.5rem;
-            }
+            transform: translateY(5.5rem);
         }
     }
 
@@ -41,7 +40,7 @@
         height: 24rem;
         background: no-repeat url(#{$img-layout-path}bg_header.jpg) center center / cover;
         border-radius: $border-radius-xlarge;
-        transition: 0.4s;
+        transition: height 0.4s ease;
 
         @include deskS {
             height: 22rem;
