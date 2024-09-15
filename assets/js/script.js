@@ -6,8 +6,7 @@
 let screenSize = window.innerWidth;
 window.addEventListener("resize", () => (screenSize = window.innerWidth));
 
-// header,footer 비동기 작성
-const layoutInclude = async (callbacks = {}) => {
+const ui = async (callbacks = {}) => {
     const layoutItems = document.querySelectorAll("[data-include-path]");
 
     for (const item of layoutItems) {
@@ -32,24 +31,10 @@ const layoutInclude = async (callbacks = {}) => {
     }
 };
 
-const layoutEvents = {
-    headerScroll: () => {
-        const header = document.querySelector("#header ");
-        let scrollTop = window.scrollY;
-
-        window.addEventListener("scroll", () => {
-            scrollTop = window.scrollY;
-
-            if (scrollTop > 0) {
-                header.classList.add("on");
-            } else {
-                header.classList.remove("on");
-            }
-        });
-    },
+const events = {
     gnbPc: () => {
         // GNB PC이벤트 - mouseenter/mouseleave
-        const gnbBtns = gnb.querySelectorAll(".depth1 > li");
+        const gnbBtns = document.querySelectorAll(".depth1 > li");
 
         const hover = (target, action) => {
             if (1280 >= screenSize) return;
@@ -69,7 +54,7 @@ const layoutEvents = {
         // GNB Mobile이벤트 - click
         const panel = document.querySelector("#panel");
         const gnb = document.querySelector("#gnb");
-        const gnbBtns = gnb.querySelectorAll(".depth1 > li > a");
+        const gnbBtns = document.querySelectorAll(".depth1 > li > a");
 
         // panel 열고 닫기
         panel.addEventListener("click", () => {
@@ -128,6 +113,27 @@ const layoutEvents = {
             console.error("JSON 파일을 불러오는 데 실패했습니다:", error);
         }
     },
+    mainTitle: () => {
+        const titles = document.querySelectorAll("#main .title");
+        const titleTops = Array.from(titles).map((v) => window.scrollY + v.getBoundingClientRect().top);
+        let scrollTop = window.scrollY;
+        const startPoint = window.innerHeight - 100 // 화면에 거의 다 보일 때 쯤 발생시키기 위함
+
+        const titleOnOff = () => {
+            scrollTop = window.scrollY + startPoint;
+
+            titleTops.forEach((top, i) => {
+                if (scrollTop >= top) {
+                    titles[i].classList.add("on");
+                } else {
+                    titles[i].classList.remove("on");
+                }
+            });
+        };
+
+        titleOnOff();
+        window.addEventListener("scroll", titleOnOff);
+    },
 };
 
-layoutInclude(layoutEvents);
+ui(events);

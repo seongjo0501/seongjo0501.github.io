@@ -1,19 +1,42 @@
-.body-wrap {
-    position: relative;
-    min-height: 100vh;
-}
-
 // 메인 페이지
 #main {
+    position: relative;
     max-width: 1320px;
     margin: 0 auto;
-    padding-top: 4rem;
-    height: 200vh;
-    transition: 0.4s;
 
-    h2 {
-        font-size: 2.5rem;
-        font-weight: 500;
+    .title {
+        padding: 2rem 0 1rem 0;
+        font-size: 2rem;
+        font-weight: 700;
         text-align: center;
+        opacity: 0;
+
+        &.on {
+            -webkit-animation: title 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+            animation: title 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+        }
+    }
+
+    .main-about {
+        p {
+            padding: 0 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+            line-height: 1.5;
+
+            @include tablet {
+                font-size: 1rem;
+            }
+
+            .border {
+                position: relative;
+
+                &::after {
+                    content: "!!";
+                    display: inline-block;
+                    color: $orange;
+                }
+            }
+        }
     }
 }

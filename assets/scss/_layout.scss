@@ -3,44 +3,14 @@
 
 // 헤더, 푸터, 팝업 등 공통
 #header {
-    padding: 0 1rem;
-    position: sticky;
-    left: 0;
-    right: 0;
-    top: 10px;
-    z-index: 10;
-
-    &.on {
-        height: calc(5rem - 10px);
-
-        .header-wrap {
-            height: calc(5rem - 10px);
-        }
-
-        .sub-title {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            z-index: -1;
-        }
-
-        .depth2 {
-            box-shadow: 0 5px 5px rgba(0 0 0 / 25%);
-        }
-
-        + #main {
-            transform: translateY(5.5rem);
-        }
-    }
+    position: relative;
+    padding: 1rem 1rem 0; 
 
     .header-wrap {
         position: relative;
         height: 24rem;
         background: no-repeat url(#{$img-layout-path}bg_header.jpg) center center / cover;
         border-radius: $border-radius-xlarge;
-        transition: height 0.4s ease;
 
         @include deskS {
             height: 22rem;
@@ -350,6 +320,7 @@
     bottom: 0;
     width: 100%;
     transition: 0.4s;
+    background-color: $white;
 
     @include mobile {
         left: -100%;
