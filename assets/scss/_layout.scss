@@ -287,6 +287,10 @@
                 height: 100%;
                 color: $white;
 
+                @include mobileS {
+                    padding: 0 0.5rem;
+                }
+
                 p {
                     font-size: 3rem;
                     text-align: center;

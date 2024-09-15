@@ -1,12 +1,11 @@
 // 메인 페이지
 #main {
     position: relative;
-    max-width: 1320px;
     margin: 0 auto;
 
     .title {
-        padding: 2rem 0 1rem 0;
-        font-size: 2rem;
+        padding-bottom: 1.5rem;
+        font-size: 2.5rem;
         font-weight: 700;
         text-align: center;
         opacity: 0;
@@ -15,15 +14,31 @@
             -webkit-animation: title 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
             animation: title 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         }
+
+        @include tablet {
+            font-size: 2rem;
+            padding-bottom: 1rem;
+        }
+    }
+
+    .inner {
+        padding: 3rem 1rem;
+        margin: 0 1rem;
+        border-radius: $border-radius-xlarge;
     }
 
     .main-about {
+
+        .inner:last-child {
+            background: $gray;
+        }
+
         .title + p {
             padding-top: 0;
         }
 
         p {
-            padding: 1rem 1rem 0;
+            padding: 1rem 0;
             text-align: center;
             font-size: 1.25rem;
             line-height: 1.5;
@@ -35,6 +50,16 @@
             .point {
                 color: $orange;
             }
+
+            @include mobileS {
+                br {
+                    display: none;
+                }
+            }
         }
+    }
+
+    .main-wrok {
+       
     }
 }
