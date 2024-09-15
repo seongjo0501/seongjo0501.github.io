@@ -213,4 +213,8 @@ body {
             display: block;
         }
     }
+
+    @include mobileS { 
+        font-size: 12px;
+    }
 }
