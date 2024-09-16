@@ -117,7 +117,7 @@ const events = {
         const titles = document.querySelectorAll("#main .title");
         const titleTops = Array.from(titles).map((v) => window.scrollY + v.getBoundingClientRect().top);
         let scrollTop = window.scrollY;
-        const startPoint = window.innerHeight - 100 // 화면에 거의 다 보일 때 쯤 발생시키기 위함
+        const startPoint = window.innerHeight * 0.9 // 화면에 거의 다 보일 때 쯤 발생시키기 위함
 
         const titleOnOff = () => {
             scrollTop = window.scrollY + startPoint;
