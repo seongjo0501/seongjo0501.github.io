@@ -117,7 +117,7 @@ const events = {
         const titles = document.querySelectorAll("#main .title");
         const titleTops = Array.from(titles).map((v) => window.scrollY + v.getBoundingClientRect().top);
         let scrollTop = window.scrollY;
-        const startPoint = window.innerHeight * 0.9 // 화면에 거의 다 보일 때 쯤 발생시키기 위함
+        const startPoint = window.innerHeight * 0.9; // 화면에 거의 다 보일 때 쯤 발생시키기 위함
 
         const titleOnOff = () => {
             scrollTop = window.scrollY + startPoint;
@@ -133,6 +133,41 @@ const events = {
 
         titleOnOff();
         window.addEventListener("scroll", titleOnOff);
+    },
+    mainHistory: () => {
+        const history = document.querySelector(".main-work .history");
+        if (!history) return; // history 요소가 없으면 함수 종료
+
+        const line = history.querySelector(".line");
+        const items = Array.from(history.querySelectorAll("ul li"));
+        const startPoint = window.innerHeight * 0.8; // 이벤트 시점 기준
+        let scrollTop = window.scrollY;
+
+        // 아이템의 Y 좌표값 미리 계산
+        const getItemsTop = () => items.map((item) => item.getBoundingClientRect().top + scrollTop);
+
+        // 히스토리의 시작점 계산
+        const historyTop = history.getBoundingClientRect().top + scrollTop;
+
+        const scrollEvent = () => {
+            scrollTop = window.scrollY;
+            const itemsTop = getItemsTop();
+
+            itemsTop.forEach((v, i) => {
+                if (scrollTop + startPoint > v) {
+                    items[i].classList.add("on");
+                } else {
+                    items[i].classList.remove("on");
+                }
+            });
+
+            const lineHeight = Math.max(0, scrollTop + startPoint - historyTop);
+            line.style.height = `${lineHeight}px`;
+        };
+
+        scrollEvent(); 
+        window.addEventListener("scroll", scrollEvent);
+        window.addEventListener("resize", scrollEvent);
     },
 };
 
